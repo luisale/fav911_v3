@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> : Fav911 : </title>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+		<link rel="stylesheet" type="text/css" href="js/jquery.mobile/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css" >
+		<link rel="stylesheet" type="text/css" href="css/pnotify.custom.min.css">
+
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery-ui.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/ui/jquery.ui.map.js"  ></script>
+		
+		<script type="text/javascript" src="js/jquery.mobile/jquery-mobile-simpledialog.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/facebook.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/pnotify.custom.min.js"></script>
+	</head>
+	<body >
+		<div id="fb-root"></div>
+		<div class="all">
+			<div class="mask">
+
+				<div data-role="page" id="inicio" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<!--a href="javascript:void(0);" onclick="navigator.app.exitApp();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde">
+										<span>Salir</span>
+									</a-->
+									<a href="#popupPadded" id="btnpopupPadded" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
+										<span>Registrarse</span>
+									</a>
+									<a href="javascript:void(0);" id="btnpopupPaddedcerrar" onclick="logout();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
+										<span>Cerrar Sesión</span>
+									</a>
+									<div data-role="popup" id="popupPadded" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
+										<form method="post" id="formregistro">
+											<input type="text" name="alias" required placeholder="Alias" >
+											<input type="text" name="movil" id="movil" required placeholder="Nro. Movil" >
+											<div class="margen2 btn">
+												<a href="javascript:void(0);" onclick="login();" data-rel="back" class="ui-btn ui-corner-all c_amarillo">Facebook</a>
+												<a href="javascript:void(0);" onclick="googlelogin();" data-rel="back" class="ui-btn ui-corner-all c_amarillo">Google </a>
+											</div>
+										</form>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="ui-body ui-body-a buscador-cont ">
+							<div class="ui-body">
+								<a href="#mapa" class="ui-btn-icon-left ui-icon-location big-icon" ></a>
+								<div class="buscador-fake">
+									<input type="text" name="buscador" id="buscador1" onkeyup="$('#buscador2').val($(this).val());" class="buscador" value="" />
+									<a class="ui-btn-icon-right ui-icon-search big-icon" href="javascript:void(0);" onclick="buscar($('#buscador1').val());" ></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-role="content" role="main" class="content ui-content ">
+						<div class="btn_inicio"> 
+							<a href="#misavisos" onclick="misavisos();" class="ui-btn ui-corner-all ico_aviso c_naranjo"><span>Mis Avisos</span></a>
+							<a href="#misfavoritos" onclick="misfavoritos();" class="ui-btn ui-corner-all borde ico_favorito c_celeste"><span>Mis Favoritos</span></a>
+							<a href="#notificaciones" onclick="misnotificaciones();" class="ui-btn ui-corner-all borde ico_notifica c_verde "><span>Mis Notificaciones</span></a>
+						</div>
+					</div>
+				</div>
+
+				<div data-role="page" id="resultados" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a href="javascript:void(0);" id="btnpopupPadded4" onclick="javascript:gotohome();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" >
+										<span>Registrarse</span>
+									</a>
+									<a href="javascript:void(0);" id="btnpopupPadded4cerrar" onclick="logout();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
+										<span>Cerrar</span>
+									</a>
+								</div>
+							</div> 
+						</div>
+						<div class="ui-body ui-body-a buscador-cont ">
+							<div class="ui-body">
+                                <a href="#mapa" class="ui-btn-icon-left ui-icon-location big-icon" ></a>
+								<div class="buscador-fake">
+									<input type="text" name="buscador" id="buscador2" onkeyup="$('#buscador1').val($(this).val())" class="buscador" value="" />
+                                    <a class="ui-btn-icon-right ui-icon-search big-icon" href="javascript:void(0);" onclick="buscar($('#buscador2').val());" ></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="content_anuncios" data-role="content" role="main" class="content ui-content"> </div>
+				</div>
+				<div data-role="page" id="mapa" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a href="javascript:void(0);" id="btnpopupPadded2" onclick="javascript:gotohome();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" >
+										<span>Registrarse</span>
+									</a>
+									<a href="javascript:void(0);" id="btnpopupPadded2cerrar" onclick="logout();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
+										<span>Cerrar</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="ui-body ui-body-a buscador-cont ">
+							<div class="ui-body">
+								<a href="#mapa" class="ui-btn-icon-left ui-icon-location big-icon" onclick="initMap();" ></a>
+								<div class="buscador-fake">
+									<input type="text" name="buscador" id="buscador3" class="buscador" value="" />
+									<a class="ui-btn-icon-right ui-icon-search big-icon" href="javascript:void(0);" onclick="initMap();" ></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-role="content" role="main" id="mapacontent" class="content ui-content " style="height:500px;">
+						<div id="map"></div>
+					</div>
+				</div>
+
+				<div data-role="page" id="mapa2" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a href="javascript:void(0);" id="btnpopupPadded3" onclick="javascript:gotohome();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" >
+										<span>Registrarse</span>
+									</a>
+									<a href="javascript:void(0);" id="btnpopupPadded3cerrar" onclick="logout();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
+										<span>Cerrar</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="ui-body ui-body-a buscador-cont ">
+							<div class="ui-body">
+								<a href="#mapa" class="ui-btn-icon-left ui-icon-location big-icon" onclick="initMap();" ></a>
+								<div class="buscador-fake">
+									<input type="text" name="buscador" id="buscador4" class="buscador" value="" />
+									<a class="ui-btn-icon-right ui-icon-search big-icon" href="javascript:void(0);" onclick="initMap2();" ></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-role="content"  role="main" id="mapacontent2" class="content ui-content ">
+						<div id="map2"></div>
+					</div>
+				</div>
+
+				<div data-role="page" id="misavisos" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a href="#nuevoaviso" onclick="$('#form-aviso').resetear(); getselcategoria();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" id="nuevo1" >
+										<span>Nuevo</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="ui-body ui-body-a titulo-cont bg">
+							<div class="ui-body">
+								Mis Avisos
+							</div>
+						</div>
+					</div>
+					<div id='content_misavisos' data-role="content" role="main" class="content ui-content"> </div>
+				</div>
+
+				<div data-role="page" id="nuevoaviso" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<!--a href="#inicio" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde">
+										<span>Inicio</span>
+									</a-->
+								</div>
+							</div>
+						</div>
+						<div class="ui-body ui-body-a titulo-cont bg">
+							<div class="ui-body">
+								Ingrese un nuevo Aviso
+							</div>
+						</div>
+					</div>
+					<div data-role="content" role="main" class="content ui-content">
+						<div class="margen">
+							<form action="#" id="form-aviso" class="form-aviso" method="post" >
+
+								<input type="text" id="avs_alias" name="avs_alias" placeholder="Alias del Aviso" />
+								<input type="text" id="avs_descripcion" name="avs_descripcion" placeholder="Descripción del Aviso" />
+								<input type="text" id="avs_detalle" name="avs_detalle" placeholder="Detalle del Aviso" />
+								<input type="text" id="avs_cobertura" name="avs_cobertura" placeholder="Cobertura en Radio de kilómetros" />
+
+								<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+											<div class="ui-select">
+											<select name="avs_color" id="avs_color" data-native-menu="false" tabindex="-1">
+											<option data-placeholder="true">Seleccione Una Color</option>
+											<option value="c_gris">Gris</option>
+											<option value="c_naranjo">Naranjo</option>
+											<option value="c_celeste">Celeste</option>
+											<option value="c_amarillo">Amarillo</option>
+											<option value="c_rojo">Rojo</option>
+										</select>
+									</div>
+								</div>
+
+								<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+									<div class="ui-select">
+										<select name="avs_categoria" id="avs_categoria" data-native-menu="false" tabindex="-1">
+											<option data-placeholder="true">Seleccione Una Categoria</option>
+										</select>
+									</div>
+								</div>
+
+								<label>Horario de Atención</label>
+								<input type="text" id="hlunes" name="hlunes" placeholder="Lunes" />
+								<input type="text" id="hmartes" name="hmartes" placeholder="Martes" />
+								<input type="text" id="hmiercoles"name="hmiercoles" placeholder="Míercoles " />
+								<input type="text" id="hjueves" name="hjueves" placeholder="Jueves " />
+								<input type="text" id="hviernes" name="hviernes" placeholder="Viernes" />
+								<input type="text" id="hsabado" name="hsabado" placeholder="Sábado" />
+								<input type="text" id="hdomingo" name="hdomingo" placeholder="Domingo" />
+
+								<label>Imagenes</label>
+								<div class="imagenesdiv">
+									<input type="button" onclick="popupcamara(1);" value="Imagen 1" />
+										<input id="imagen1" name="imagen1" type="hidden" />
+										<input id="imagenid1" name="imagenid1" type="hidden" />
+                                        <div class="ui-content"><img width="50%" height="50%" src="" id="imgavs1" /></div>
+									<input type="button" onclick="popupcamara(2);" value="Imagen 2" />
+										<input id="imagen2" name="imagen2" type="hidden" />
+										<input id="imagenid2" name="imagenid2" type="hidden" />
+                                        <div class="ui-content"><img width="50%" height="50%" src="" id="imgavs2" /></div>
+									<input type="button" onclick="popupcamara(3);" value="Imagen 3" />
+										<input id="imagen3" name="imagen3" type="hidden" />
+										<input id="imagenid3" name="imagenid3" type="hidden" />
+                                        <div class="ui-content"><img width="50%" height="50%" src="" id="imgavs3" /></div>
+								</div>
+								<div data-role="popup" id="popupMenu" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
+									<ul data-role="listview">
+										<li data-role="divider" data-theme="a" class="ui-li ui-li-static ui-btn-up-a ui-corner-top ui-body-a ui-first-child">Cargar Imagen</li>
+										<li><a href="javascript:void(0);" onclick="capturePhoto();" >Camara</a></li>
+										<li><a href="javascript:void(0);" onclick="getPhoto();" >Galeria</a></li>
+									</ul>
+								</div> 
+
+								<label>Contacto</label>
+								<input type="text" id="con_nombre" name="con_nombre" placeholder="Nombre" />
+								<input type="text" id="con_apaterno" name="con_apaterno" placeholder="Apellido Paterno" />
+								<input type="text" id="con_amaterno" name="con_amaterno" placeholder="Apellido Materno" />
+								<input type="text" id="con_rut" name="con_rut" placeholder="Nro. De Identificación único (RUT)" />
+
+								<label>Ingrese los Tag de su Aviso</label>
+								<input type="text" id="tag1" name="tag1" placeholder="Tag 1" />
+								<input type="text" id="tag2" name="tag2" placeholder="Tag 2" />
+								<input type="text" id="tag3" name="tag3" placeholder="Tag 3" />
+
+								<input type="hidden" id="editavs_id" name="editavs_id" value="0" />
+
+								<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+									<label>Ubicación</label>
+								</div>
+								<div id="mapdireccion" style="width:100%;height:400px" ></div>
+								<input type="hidden" name="avs_lat" id="avs_lat" />
+								<input type="hidden" name="avs_lng" id="avs_lng" />
+								
+								<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+									<a href="javascript:void(0)" onclick="obtenerdireccion()" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_amarillo big-icon2 borde">
+										<span>Obtener Direccion</span>
+									</a>
+								</div>
+								<input type="text" name="avs_direccion" id="avs_direccion" placeholder="Presione Obtener Direccion" />
+
+
+								<div class="margen2 left"> 
+									<a href="javascript:void(0);" onclick="guardaraviso();" class="ui-btn ui-corner-all c_amarillo borde"><span>Guardar</span></a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div data-role="page" id="misfavoritos" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a id="ordenarfav"  href="javascript:void(0);" action="ordenar" onclick="ordenfavorito(this);" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde">
+										<span>Ordenar</span>
+									</a>
+									<a href="#popupPadded2" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" id="nuevo3" ><span>Nuevo</span></a>
+									<div data-role="popup" id="popupPadded2" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
+										<form method="post" id="form-proveedor" >
+											<input type="text" name="prv_alias" required id="prv_alias" placeholder="Alias del proveedor" >
+											<input type="text" name="prv_movil" required id="prv_movil" placeholder="+cod-pais Movil" >
+											<label class="msj"> Nro. Existente en nuestros Registros. <a href="#" onclick="prvExiste()" >Buscar Aquí</a> </label>
+											<div class="margen2 btn">
+												<a type="buttom" href="javascript:void(0);" onclick="addProveedor();" class="ui-btn ui-corner-all c_amarillo">Guardar</a>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div  class="ui-body ui-body-a titulo-cont bg">
+							<div class="ui-body">
+								Mis Favoritos
+							</div>
+
+						</div>
+					</div>
+					<div id="content_misfavoritos" data-role="content" role="main" class="content ui-content"> </div>
+				</div>
+
+				<div data-role="page" id="notificaciones" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a href="#popupPadded4" onclick="avisosnoti();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" id="nuevo4" >
+										<span>Nueva</span>
+									</a>
+									<div data-role="popup" id="popupPadded4" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
+										<form method="post" class="form" action="#notificaciones
+										" name="form-notificacion" id="form-notificacion">
+											<input type="text" name="aliasnoti" id="aliasnoti" value="" placeholder="Alias de la notificación" >
+											<textarea rows="30" name="detallenoti" id="detallenoti" value="" placeholder="Detalle" ></textarea>
+											
+											<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                                    			<div class="ui-select">
+                                    			    <select name="avisosnoti" id="avisosnoti" data-native-menu="false" tabindex="-1">
+                                    			        <option data-placeholder="true" selected="selected" value="-1">Seleccione Un Aviso</option>
+                                    			    </select>
+                                    			</div>
+                           				 	</div>
+											<div class="margen2 btn">
+												<button type="buttom" onclick="guardarnoti();" class="ui-btn ui-corner-all c_amarillo">Guardar</button>
+											</div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div  class="ui-body ui-body-a titulo-cont bg">
+							<div class="ui-body" onclick="alertas();">
+								Mis Notificaciones
+							</div>
+						</div>
+					</div>
+					<div id="content_misnotificaciones" data-role="content" role="main" class="content ui-content"></div>
+				</div>
+				<!--div data-role="page" id="configuracion" class="app" >
+					<div data-role="header" class="head">
+						<div class="logo">
+							<img src="img/logo.jpg">
+						</div>
+						<div class="bg">
+							<div class="div_btns">
+								<div class="cont">
+									<a href="#inicio" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde"><span>Inicio</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="ui-body ui-body-a titulo-cont bg">
+							<div class="ui-body">
+								Configuración
+							</div>
+						</div>
+					</div>
+					<div data-role="content" role="main" class="content ui-content">
+						<form action="#" id="form-config" class="form-config">
+							
+							<input type="text" name="avs_alias" placeholder="Alias del Aviso" />
+							<input type="text" name="avs_descripcion" placeholder="Descripción del Aviso" />
+							<input type="text" name="avs_detalle" placeholder="Detalle del Aviso" />
+							<input type="text" name="avs_cobertura" placeholder="Cobertura en Radio de kilómetros" />
+							<div class="margen2 left">
+								<a class="ui-btn ui-corner-all c_amarillo borde"><span>Guardar</span></a>
+							</div>
+
+						</form>
+					</div>
+				</div-->
+			</div>
+		</div>
+		<div class="footer">
+			<div class="out">
+				<div class="in">Copyright © 2015 - 2016 Favo911 S.A. 
+				Todos los derechos reservados. 
+				Condiciones de uso, Aviso de privacidad y cookies.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
