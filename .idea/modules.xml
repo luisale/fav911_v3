@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-facebook4/src/cordova-plugin-facebook4.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-facebook4/src/cordova-plugin-facebook4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-inappbrowser/src/cordova-plugin-inappbrowser.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-inappbrowser/src/cordova-plugin-inappbrowser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-whitelist/src/cordova-plugin-whitelist.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/src/cordova-plugin-whitelist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/org.apache.cordova.camera/src/org.apache.cordova.camera.iml" filepath="$PROJECT_DIR$/plugins/org.apache.cordova.camera/src/org.apache.cordova.camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/phonegap-plugin-push/src/phonegap-plugin-push.iml" filepath="$PROJECT_DIR$/plugins/phonegap-plugin-push/src/phonegap-plugin-push.iml" />
+      <module fileurl="file://$PROJECT_DIR$/www/www.iml" filepath="$PROJECT_DIR$/www/www.iml" />
+    </modules>
+  </component>
+</project>
+
