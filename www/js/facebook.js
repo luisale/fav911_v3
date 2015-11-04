@@ -13,7 +13,12 @@ function onDeviceReady() {
 		window.localStorage.setItem("GCMid", GCMid);
     });
     push.on('notification', function(data) {
-    	Notifyb(data.message,data.title,data.additionalData.id);
+
+    	if (data.additionalData.id){
+    		Notifyb(data.message,data.title,data.additionalData.id);
+    	}else{
+    		Notify(data.message,data.title,false);
+    	};
 		console.log(data.message+': '+data.title);
 		console.log('additionalData '+data.additionalData.id);
     });
@@ -234,8 +239,13 @@ function login () {
 				dataType: "json", 
 				cache:false,
 				success: function(data){
-					Notify( data.msj,'Mi Cuenta: ',true ); 
-					verificar_session();
+					if (data.session == 'false'){
+  				 		Notify( data.msj,'Mi Cuenta: ' );  
+  				 		cerrar_sesion();
+  					}else{
+  				 		Notify( data.msj,'Mi Cuenta: ' );  
+  				 		verificar_session();
+  					};
 				}
 			});
 		}
@@ -575,7 +585,11 @@ function activarnoti(idntf){
 		dataType: "json",  
 		cache:false,
 		success: function(data){
-			Notify('Notificacion Publicada','Mis Notificaciones',true)
+			if (data.msj){
+				Notify(data.msj,'Mis Notificaciones',true)
+			}else{
+				Notify(data.msj,'Mis Notificaciones',true)
+			};
 		},
 		complete:function(){
 			misnotificaciones();
@@ -698,12 +712,13 @@ var misfavoritos =  function(id){
 		}
 	}).done(function(){
 		if (id){
-   			$('#content_misfavoritos #textfav'+id).trigger( "click" );
    			//goToByScroll('#content_misfavoritos #textfav'+id);
-   			$(document).ready(function(){
-   			var p =	$.mobile.activePage.find('#textfav'+id).parent().offset();
-	   			$.mobile.silentScroll(p.top);
-   			})
+   			window.setTimeout(function(){
+   				$('#content_misfavoritos #textfav'+id).trigger( "click" );
+   				var p =	$('#textfav'+id).parent().parent().offset();
+	   				$.mobile.silentScroll(p.top+500);
+   			}, 1500);
+	   				//$('body').scrollTo('#textfav'+id);
 		};
 	});
 }

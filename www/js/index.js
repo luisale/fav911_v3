@@ -73,8 +73,13 @@ function googlelogin(){
 	      				dataType: "json", 
 	      				cache:false,
 	      				success: function(data){
-	      				 	Notify( data.msj,'Mi Cuenta: ' );  
-	      				 	verificar_session();
+	      					if (data.session == 'false'){
+	      				 		Notify( data.msj,'Mi Cuenta: ' );  
+	      				 		cerrar_sesion();
+	      					}else{
+	      				 		Notify( data.msj,'Mi Cuenta: ' );  
+	      				 		verificar_session();
+	      					};
 	      				}
 	     			});
 			 	}
