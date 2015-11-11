@@ -19,6 +19,8 @@
 
 # cordova-plugin-geolocation
 
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-geolocation.svg)](https://travis-ci.org/apache/cordova-plugin-geolocation)
+
 This plugin provides information about the device's location, such as
 latitude and longitude. Common sources of location information include
 Global Positioning System (GPS) and location inferred from network

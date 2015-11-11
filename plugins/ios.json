@@ -7,25 +7,25 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        },
         "cordova-plugin-facebook4": {
             "APP_ID": "151674005184259",
-            "APP_NAME": "com.phonegap.helloworld",
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "APP_NAME": "cl.doapp.fav911",
+            "PACKAGE_NAME": "cl.doapp.fav911"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "cl.doapp.fav911"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "cl.doapp.fav911"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
-        "org.apache.cordova.camera": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
         },
         "phonegap-plugin-push": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "cl.doapp.fav911"
         }
     },
     "dependent_plugins": {}

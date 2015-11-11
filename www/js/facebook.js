@@ -8,12 +8,10 @@ function onDeviceReady() {
      		"windows": {} } 
          );
     push.on('registration', function(data) {
-		var GCMid = data.registrationId;
-		console.log(GCMid);
+        var GCMid = data.registrationId;
 		window.localStorage.setItem("GCMid", GCMid);
     });
     push.on('notification', function(data) {
-
     	if (data.additionalData.id){
     		Notifyb(data.message,data.title,data.additionalData.id);
     	}else{
@@ -578,10 +576,13 @@ function borrarnoti(id){
 
 function activarnoti(idntf){
 	var session = window.localStorage.getItem("session");
+    var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : "null";
+
+                          
 	$.ajax({
 		type: "POST",
 		url: "http://www.fav911.com/ws/fav911/activarnoti/"+idntf, 
-		data: {"session":session},
+		data: {"session":session,"device":deviceType},
 		dataType: "json",  
 		cache:false,
 		success: function(data){

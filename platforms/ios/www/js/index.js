@@ -261,8 +261,13 @@ function setMarkers( map , posicion ) {
 					}else{
 						var seguir = '';
 					}
+                    
+                    if(marker.usr_movil){
+                       seguir = seguir+'<a class="gmapBtn naranjo" href="tel:'+marker.usr_movil+'" >Llamar</a> ';
+                    }
+                        
 					var infowindow = new google.maps.InfoWindow({
-						content: seguir+'<a href="javascript:void(0);" class="gmapBtn naranjo" href="tel:'+marker.usr_movil+'" >Llamar</a> ' 
+						content: seguir
 					});
 					mrkr.addListener('click', function() {
 						infowindow.open(map, mrkr);
@@ -481,9 +486,13 @@ function mostrarMapa(id){
 			}else{
 				var seguir = '';
 			}
+           
+           if(dato.usr_movil){
+                seguir = seguir+'<a class="gmapBtn naranjo" href="tel:'+dato.usr_movil+'" >Llamar</a> ' ;
+           }
 
 			var infowindow = new google.maps.InfoWindow({
-				content: seguir+'<a href="javascript:void(0);" class="gmapBtn naranjo" href="tel:'+dato.usr_movil+'" >Llamar</a> ' 
+				content: seguir
 			});
 			
 			mrkr.addListener('click', function() { infowindow.open(map, mrkr); }); 
