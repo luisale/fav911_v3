@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		0AC2E137992A4C8089AE70B4 /* PushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = B84ADBCF2B9F4FBF857B9105 /* PushPlugin.m */; };
 		12A41C77E06D41C3AB817F78 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A8B0787494F4D9E93CA5F /* FBSDKCoreKit.framework */; };
@@ -33,6 +34,7 @@
 		30C1856619D5FC0A00212699 /* icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C1856519D5FC0A00212699 /* icon-60@3x.png */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		3647C93316924D00A8D1CC6A /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCF994C2FB48908C868BE1 /* CDVCamera.m */; };
+		4F2F09E41BF3EDA4002DF337 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2F09E31BF3EDA4002DF337 /* Images.xcassets */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		70076DD5FDD746D0B6F40F44 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EFF553DB8344708F130EDD /* CoreLocation.framework */; };
 		76904B32808F48BB84C8660C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89D289433644C8693F2F06D /* AVFoundation.framework */; };
@@ -107,6 +109,7 @@
 		32CA4F630368D1EE00C91783 /* Fav911-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Fav911-Prefix.pch"; sourceTree = "<group>"; };
 		3FEE49B6AE9B4179AC1507EE /* CDVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; };
 		4544F9B4A6A64E2B8CEAFFD1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Fav911/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; };
+		4F2F09E31BF3EDA4002DF337 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Fav911/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5EB4C9069EE54CBCAAD5A526 /* CDVCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVCamera.h; path = "cordova-plugin-camera/CDVCamera.h"; sourceTree = "<group>"; };
 		7544C59AE8E14CB68CBA9D20 /* CDVJpegHeaderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVJpegHeaderWriter.m; path = "cordova-plugin-camera/CDVJpegHeaderWriter.m"; sourceTree = "<group>"; };
@@ -197,9 +200,9 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F2F09E31BF3EDA4002DF337 /* Images.xcassets */,
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* Fav911-Info.plist */,
@@ -416,6 +420,7 @@
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
 				7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */,
+				4F2F09E41BF3EDA4002DF337 /* Images.xcassets in Resources */,
 				7E7966E61810823500FA85AD /* icon-small.png in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
 				3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */,
@@ -493,7 +498,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"Fav911/Plugins/cordova-plugin-facebook4\"",
@@ -509,6 +514,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Fav911/Fav911-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -535,7 +541,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"Fav911/Plugins/cordova-plugin-facebook4\"",
@@ -549,6 +555,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Fav911/Fav911-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,

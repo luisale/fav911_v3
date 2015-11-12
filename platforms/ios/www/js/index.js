@@ -66,10 +66,12 @@ function googlelogin(){
 	     			var session  = JSON.stringify(objeto);
 	     			var form     = formatoJSON('#formregistro');
 					var GCMid    = window.localStorage.getItem("GCMid");
+                    var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : "null";
+               
 	     			$.ajax({
 	      				type: "POST",
 	      				url: "http://www.fav911.com/ws/fav911/crear_usuario/", 
-	      				data: {"session":session,"form":form,"GCMid":GCMid},
+	      				data: {"session":session,"form":form,"GCMid":GCMid,"device":deviceType},
 	      				dataType: "json", 
 	      				cache:false,
 	      				success: function(data){
