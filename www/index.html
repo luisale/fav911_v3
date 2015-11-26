@@ -45,20 +45,45 @@
 									<a href="#popupPadded" id="btnpopupPadded" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
 										<span>Registrarse</span>
 									</a>
+
 									<a href="javascript:void(0);" id="btnpopupPaddedcerrar" onclick="logout();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" >
 										<span>Cerrar Sesión</span>
 									</a>
+
 									<div data-role="popup" id="popupPadded" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
 										<form method="post" id="formregistro">
-											<input type="text" name="alias" required placeholder="Alias" >
+											<input type="text" name="alias" id="alias" required placeholder="Alias" >
 											<input type="text" name="movil" id="movil" required placeholder="Nro. Movil" >
 											<div class="margen2 btn">
 												<a href="javascript:void(0);" onclick="login();" data-rel="back" class="ui-btn ui-corner-all c_amarillo">Facebook</a>
 												<a href="javascript:void(0);" onclick="googlelogin();" data-rel="back" class="ui-btn ui-corner-all c_amarillo">Google </a>
+												<a href="javascript:void(0);" onclick="registrarse('popupPadded');" class="ui-btn ui-corner-all c_amarillo">Registrarse</a>
+												<a href="javascript:void(0);" onclick="iniciarse('popupPadded');" class="ui-btn ui-corner-all c_amarillo">Iniciar Sessión </a>
 											</div>
 										</form>
 									</div>
-									
+
+									<div data-role="popup" id="authpropio" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
+										<form method="post" id="formauthpropio">
+											<input type="text" name="email" id="email" required placeholder="E-mail" >
+											<input type="password" name="pass" id="pass" required placeholder="Contraseña" >
+											<input type="password" name="passcheck" id="passcheck" required placeholder="Confirmar Contraseña" >
+											<div class="margen2 btn">
+												<a href="javascript:void(0);" onclick="authpropio();" data-rel="back" class="ui-btn ui-corner-all c_amarillo">Registrar </a>
+											</div>
+										</form>
+									</div>
+
+									<div data-role="popup" id="iniciarsession" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
+										<form method="post" id="forminiciarsession">
+											<input type="text" name="emailini" id="emailini" required placeholder="E-mail" >
+											<input type="password" name="passini" id="passini" required placeholder="Contraseña" >
+											<div class="margen2 btn">
+												<a href="javascript:void(0);" onclick="iniciarsession();" data-rel="back" class="ui-btn ui-corner-all c_amarillo">Iniciar Sessión </a>
+											</div>
+										</form>
+									</div>
+
 								</div>
 							</div>
 						</div>
@@ -89,6 +114,9 @@
 						<div class="bg">
 							<div class="div_btns">
 								<div class="cont">
+									
+									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
+
 									<a href="javascript:void(0);" id="btnpopupPadded4" onclick="javascript:gotohome();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" >
 										<span>Registrarse</span>
 									</a>
@@ -110,6 +138,7 @@
 					</div>
 					<div id="content_anuncios" data-role="content" role="main" class="content ui-content"></div>
 				</div>
+
 				<div data-role="page" id="mapa" class="app" >
 					<div data-role="header" class="head">
 						<div class="logo">
@@ -118,6 +147,9 @@
 						<div class="bg">
 							<div class="div_btns">
 								<div class="cont">
+									
+									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
+
 									<a href="javascript:void(0);" id="btnpopupPadded2" onclick="javascript:gotohome();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" >
 										<span>Registrarse</span>
 									</a>
@@ -150,6 +182,8 @@
 						<div class="bg">
 							<div class="div_btns">
 								<div class="cont">
+									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
+
 									<a href="javascript:void(0);" id="btnpopupPadded3" onclick="javascript:gotohome();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" >
 										<span>Registrarse</span>
 									</a>
@@ -182,6 +216,8 @@
 						<div class="bg">
 							<div class="div_btns">
 								<div class="cont">
+									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
+
 									<a href="#nuevoaviso" onclick="$('#form-aviso').resetear(); getselcategoria();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" id="nuevo1" >
 										<span>Nuevo</span>
 									</a>
@@ -196,6 +232,7 @@
 					</div>
 					<div id='content_misavisos' data-role="content" role="main" class="content ui-content"> </div>
 				</div>
+
 				<div data-role="page" id="nuevoaviso" class="app" >
 					<div data-role="header" class="head">
 						<div class="logo">
@@ -203,8 +240,7 @@
 						</div>
 						<div class="bg">
 							<div class="div_btns">
-								<div class="cont">
-								</div>
+								<div class="cont"> </div>
 							</div>
 						</div>
 						<div class="ui-body ui-body-a titulo-cont bg">
@@ -319,7 +355,9 @@
 						<div class="bg">
 							<div class="div_btns">
 								<div class="cont">
-									<a id="ordenarfav"  href="javascript:void(0);" action="ordenar" onclick="ordenfavorito(this);" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde">
+									
+									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
+									<a id="ordenarfav" href="javascript:void(0);" action="ordenar" onclick="ordenfavorito(this);" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde">
 										<span>Ordenar</span>
 									</a>
 									<a href="#popupPadded2" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" id="nuevo3" ><span>Nuevo</span></a>
@@ -354,6 +392,7 @@
 						<div class="bg">
 							<div class="div_btns">
 								<div class="cont">
+									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
 									<a href="#popupPadded4" onclick="avisosnoti();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" id="nuevo4" >
 										<span>Nueva</span>
 									</a>
@@ -391,9 +430,7 @@
 		</div>
 		<div class="footer">
 			<div class="out">
-				<div class="in">Copyright © 2015 - 2016 Favo911 S.A. 
-				Todos los derechos reservados. 
-				Condiciones de uso, Aviso de privacidad y cookies.
+				<div class="in">Copyright © 2015 - 2016 Favo911 S.A. <br /> Todos los derechos reservados. <br /> Condiciones de uso, Aviso de privacidad y cookies.
 				</div>
 			</div>
 		</div>

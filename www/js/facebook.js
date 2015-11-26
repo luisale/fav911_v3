@@ -4,18 +4,18 @@ function onDeviceReady() {
 	verificar_session();
 	var push = PushNotification.init({ 
 	 		"android": {"senderID": "546757857806","vibrate":"true"},
-     		"ios": {"alert": "true", "badge": "true", "sound": "true"}, 
-     		"windows": {} } 
-         );
+ 			"ios": {"alert": "true", "badge": "true", "sound": "true"}, 
+ 			"windows": {} } 
+			);
     push.on('registration', function(data) {
         var GCMid = data.registrationId;
 		window.localStorage.setItem("GCMid", GCMid);
     });
     push.on('notification', function(data) {
     	if (data.additionalData.id){
-    		Notifyb(data.message,data.title,data.additionalData.id);
+			Notifyb(data.message,data.title,data.additionalData.id);
     	}else{
-    		Notify(data.message,data.title,false);
+			Notify(data.message,data.title,false);
     	};
 		console.log(data.message+': '+data.title);
 		console.log('additionalData '+data.additionalData.id);
@@ -24,6 +24,7 @@ function onDeviceReady() {
 		console.log(e.message);
     });
 }
+
 function Notifyb(mensaje,titulo,id){
 	if (mensaje){
 
@@ -31,38 +32,42 @@ function Notifyb(mensaje,titulo,id){
 			var titulo = 'Fav911'
 		};
 		new PNotify({
-	    		title: titulo,
-	    		text: mensaje,
-	    		icon: false,
-	    		addclass:'.ui-pnotify.stack-center',
-	    		hide: false,
-	    		confirm:{
-	    			confirm:true,
-	    			buttons: [{
-           				text:'Ver Aviso',
-           				addClass:'notibtn',
-           				click: function(notice) {
-       					   $(':mobile-pagecontainer').pagecontainer('change', '#misfavoritos');
-       					   misfavoritos(id);
-       					   notice.remove();
-           				}
-		 			},
-	 				{
-           				text: 'Cerrar',
-           				addClass:'',
-           				click: function(notice) {
-           				 notice.remove();
-           				}
-   			 		}]
-	    		},
-   				buttons: {
-   					closer_hover: false,
-   				    sticker: false
+			title: titulo,
+			text: mensaje,
+			icon: false,
+			addclass:'.ui-pnotify.stack-center',
+			hide: false,
+			confirm:{
+				confirm:true,
+				buttons: [{
+					text:'Ver Aviso',
+					addClass:'notibtn',
+					click: function(notice) {
+   					   $(':mobile-pagecontainer').pagecontainer('change', '#misfavoritos');
+   					   misfavoritos(id);
+   					   notice.remove();
+					}
+	 			},
+ 				{
+					text: 'Cerrar',
+					addClass:'',
+					click: function(notice) {
+					 notice.remove();
+					}
+			 		}]
+			},
+				buttons: {
+					closer_hover: false,
+					closer: false,
+				    sticker: false
 
-   				},
-   				history: {
-   				    history: false
-   				}
+				},
+				history: {
+				    history: false
+				},
+			mobile: {
+				swipe_dismiss: true
+			}
 		});
 	}
 }
@@ -74,23 +79,26 @@ function Notify(mensaje,titulo,hide){
 			var titulo = 'Fav911'
 		};
 		new PNotify({
-	    		title: titulo,
-	    		text: mensaje,
-	    		icon: false,
-	    		addclass:'.ui-pnotify.stack-center',
-	    		hide: hide,
-   				buttons: {
-   					closer_hover: false,
-   				    sticker: false
+			title: titulo,
+			text: mensaje,
+			icon: false,
+			addclass:'.ui-pnotify.stack-center',
+			hide: hide,
+			buttons: {
+				closer_hover: false,
+				closer: false,
+				sticker: false
 
-   				},
-   				history: {
-   				    history: false
-   				}
+			},
+			history: {
+				history: false
+			},
+			mobile: {
+				swipe_dismiss: true
+			}
 		});
 	}
 }
-
 
 function ordenfavorito(boton){
   var action = $(boton).attr('action');
@@ -131,15 +139,16 @@ function ordenfavorito(boton){
     	$(boton).attr('action','ordenar');
   };
 }
+
 function escapeHtml(text) {
 	var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
 	return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
+
 function goToByScroll(id){
-        $('#misfavoritos').animate({
-            scrollTop: $(id).offset().top},
-            'slow');
-    }
+    $('#misfavoritos').animate({ scrollTop: $(id).offset().top}, 'slow');
+}
+
 function AlertDialog(title,msj){
 	$('<div>').simpledialog2({
 		mode: 'blank',
@@ -216,10 +225,11 @@ function logout () {
 function login () {
 	
 	if ( $('#movil').val() == '' ) {
-		Notify( 'Debe ingresar su numero de telefono ' , 'Movil',true);
-		return false;
+		Notify( 'Debe ingresar su n\u00famero de tel\u00e9fono ' , 'Movil',true);
 	}
-
+	if ( $('#alias').val() == '' ) {
+		Notify( 'Debe ingresar su alias ' , 'Alias',true);
+	}
 	if (!window.cordova) {
 		var appId = prompt("Enter FB Application ID", "151674005184259");
 		facebookConnectPlugin.browserInit(appId);
@@ -229,9 +239,9 @@ function login () {
 		if(abrir_session(response)){
 			var session = JSON.stringify(response);
 			var form 	= formatoJSON('#formregistro');
-            var GCMid     = window.localStorage.getItem("GCMid");
-            var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : "null";
-            
+			var GCMid     = window.localStorage.getItem("GCMid");
+			var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : "null";
+			
 			$.ajax({
 				type: "POST",
 				url: "http://www.fav911.com/ws/fav911/crear_usuario/", 
@@ -334,6 +344,7 @@ function guardarnoti(){
 }
 
 $(document).ready(function(){
+ 
 	$("#avs_pais").change(function(){
 		var idparent = $(this).val();
 		getzona(idparent,'region');
@@ -788,9 +799,13 @@ var verificar_session = function(){
 		jQuery('#btnpopupPadded4').hide();
 		jQuery('#btnpopupPadded4cerrar').show();
 
-		jQuery('#nuevo1,#nuevo2,#nuevo3,#nuevo4').css('opacity', '1');;
+		jQuery('#ordenarfav').hide();
+
+		jQuery('#nuevo1,#nuevo2,#nuevo3,#nuevo4').css('opacity', '1');
 		return true;
-	}else{
+	}
+	else
+	{
 		jQuery('#btnpopupPadded').show();
 		jQuery('#btnpopupPaddedcerrar').hide();
 
@@ -803,10 +818,11 @@ var verificar_session = function(){
 		jQuery('#btnpopupPadded4').show();
 		jQuery('#btnpopupPadded4cerrar').hide();
 		
-		jQuery('#nuevo1,#nuevo2,#nuevo3,#nuevo4').css('opacity', '0');;
+		jQuery('#ordenarfav').hide();
+		
+		jQuery('#nuevo1,#nuevo2,#nuevo3,#nuevo4').css('opacity', '0');
 		return false;
 	}
-
 }
 
 var getStatus = function () { 
