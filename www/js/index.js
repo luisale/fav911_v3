@@ -1,4 +1,3 @@
-
 var googleapi = {
 	authorize: function(options) {
     var deferred = $.Deferred();
@@ -105,7 +104,7 @@ function googlelogin(){
 }
 
 function mapdireccion(lat,lng){
-   $('#mapdireccion').html('');
+	$('#mapdireccion').html('');
 	$(document).ready(function(){
 
 		navigator.geolocation.getCurrentPosition(function (position){
@@ -253,7 +252,7 @@ function authpropio()
 	var clave2 = $('#passcheck').val();
 
 	if (clave1 != clave2) {
-		Notify( 'Las contrase\u00f1as no coinciden  ' , 'Contrase\u00f1a',true);
+		Notify( 'Las contrase\u00f1as no coinciden' , 'Contrase\u00f1a',true);
 		return;
 	}
 
@@ -265,21 +264,17 @@ function authpropio()
 
 	if (clave1 == clave2) 
 	{
-		var session		= window.localStorage.getItem("session");
 		var form		= formatoJSON('#formregistro');
 		var form2		= formatoJSON('#formauthpropio');
-
-		var objeto		= {'authResponse':{'userID': $('#email').val() ,'accessToken': $('#email').val() }};
+		var objeto 		= {'authResponse':{'userID': $('#email').val() ,'accessToken': $('#email').val() }};
 		
-		if (abrir_session(objeto) )
-		{
+		if (abrir_session(objeto) ) { 
 			var session		= JSON.stringify(objeto);
-			var form		= formatoJSON('#formregistro');
 			var GCMid		= window.localStorage.getItem("GCMid");
 			var deviceType	= (navigator.userAgent.match(/iPad/i))  == "iPad" 
 								? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" 
 								? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" 
-								? "Android" : "null";
+								? "Android" : "Android";
 			$.ajax({
 				type : "POST",
 				url : "http://www.fav911.com/ws/fav911/crear_usuario", 
@@ -328,7 +323,6 @@ function iniciarsession(){
 			}
 		}
 	});
-
 }
 
 function initMap2(){

@@ -27,7 +27,6 @@ function onDeviceReady() {
 
 function Notifyb(mensaje,titulo,id){
 	if (mensaje){
-
 		if (titulo == undefined){
 			var titulo = 'Fav911'
 		};
@@ -146,7 +145,8 @@ function escapeHtml(text) {
 }
 
 function goToByScroll(id){
-    $('#misfavoritos').animate({ scrollTop: $(id).offset().top}, 'slow');
+    $('#misfavoritos').animate({ 
+    	scrollTop: $(id).offset().top}, 'slow');
 }
 
 function AlertDialog(title,msj){
@@ -213,7 +213,8 @@ function getPhoto() {
 }
 
 function onFail(message) {
-	alert('Ocurrió un error: ' + message);
+	alert('Ocurrió un error: ' 
+		+ message);
 } 
 
 function logout () { 
@@ -226,9 +227,11 @@ function login () {
 	
 	if ( $('#movil').val() == '' ) {
 		Notify( 'Debe ingresar su n\u00famero de tel\u00e9fono ' , 'Movil',true);
+		return;
 	}
 	if ( $('#alias').val() == '' ) {
 		Notify( 'Debe ingresar su alias ' , 'Alias',true);
+		return;
 	}
 	if (!window.cordova) {
 		var appId = prompt("Enter FB Application ID", "151674005184259");
@@ -310,7 +313,7 @@ function getselcategoria(){
 
 function avisosnoti(){
 	var session = window.localStorage.getItem("session");
-	$('#avisosnoti').html('<option data-placeholder="true">Seleccione Un Aviso</option>');
+	$('#avisosnoti').html('<option data-placeholder="true" value="" >Seleccione Un Aviso</option>');
 	$.ajax({
 		type: "POST",
 		url: "http://www.fav911.com/ws/fav911/avisosnoti/", 
@@ -319,28 +322,41 @@ function avisosnoti(){
 		cache:false,
 		success:
 		function(data){
+			
 			$.each(data,function(index,val){
-				$('#avisosnoti').append('<option value="'+val.avs_id+'">'+val.avs_alias+'</option>');
+				if( val.avs_alias != undefined ){
+					$('#avisosnoti').append('<option value="'+val.avs_id+'">'+val.avs_alias+'</option>');
+				}else{
+					$('#avisosnoti').append('<option value="">No tiene avisos creados</option>');
+				}
 			});
-		 $('#avisosnoti').selectmenu('refresh');
+		 	$('#avisosnoti').selectmenu('refresh');
+
 		}
 	});  
 }
 
 function guardarnoti(){
-	var session = window.localStorage.getItem("session");
-	var form = formatoJSON('#form-notificacion');
-	$.ajax({
-		type: "POST",
-		url: "http://www.fav911.com/ws/fav911/guardarnoti", 
-		data: {"session":session,"form":form},
-		dataType: "json",  
-		cache:false,
-		success: function(data){
-			$(':mobile-pagecontainer').pagecontainer('change', '#inicio');
-			Notify(data.msj ,'Notificacion: ',true);
-		}
-	});
+
+	if( $('#avisosnoti option:selected').val() != ''  ){
+
+		var session = window.localStorage.getItem("session");
+		var form = formatoJSON('#form-notificacion');
+		$.ajax({
+			type: "POST",
+			url: "http://www.fav911.com/ws/fav911/guardarnoti", 
+			data: {"session":session,"form":form},
+			dataType: "json",  
+			cache:false,
+			success: function(data){
+				$(':mobile-pagecontainer').pagecontainer('change', '#inicio');
+				Notify(data.msj ,'Notificacion: ',true);
+			}
+		});
+	}else{
+		Notify('No tiene avisos creados' ,'Notificacion: ',true);
+		return; 
+	}
 }
 
 $(document).ready(function(){
@@ -533,7 +549,11 @@ function misavisos (){
 			$.each(data,function(index,value){
 				rel++;
 				var ctagsjson = JSON.stringify(value.ctags);
+				var compartir = '';
 				var strtag = '';
+				if( value.compartir ){
+					compartir =  value.compartirHTML ;
+				}
 
 				if (ctagsjson != '[{}]'){
 					strtag = '<div class="tags">';
@@ -562,6 +582,7 @@ function misavisos (){
 							+'<div id="avsgaleria'+rel+'" class="galeria"></div>'
 							+'<div class="detalle">'+value.avs_detalle+'</div>'
 							+strtag
+							+compartir
 						+'</div>'
 					+'</div>');
 
@@ -672,7 +693,11 @@ var misfavoritos =  function(id){
 					if (value.fav_tipo == 2){
 						var ctagsjson = JSON.stringify(value.ctags);
 						var llamar = '';
+						var compartir = '';
 						
+						if( value.compartir ){
+							compartir =  value.compartirHTML ;
+						}
 						if( value.con_movil ){
 							llamar = '<a class="ui-btn ui-btn-icon-left ui-icon-phone ui-corner-all " href="tel:'+value.con_movil+'">Llamar</a>';
 						}
@@ -709,14 +734,19 @@ var misfavoritos =  function(id){
 									+'<div id="avsgaleria'+rel+'" class="galeria"></div>'
 									+'<div class="detalle">'+value.avs_detalle+'</div>'
 									+strtag
+									+compartir
 								+'</div>'
 							+'</div>');
 					}else{
+						var compartir2 = '';
 						var llamar2 = '';
 						if( value.prv_movil ){
 							llamar2 = '<a href="tel:'+value.prv_movil+'" class="llamar ui-btn-icon-right ui-icon-phone big-icon4" >Llamar</a>';
 						}
-						$('#content_misfavoritos').append('<div class="aviso favoritos reg ui-btn ui-corner-all c_gris nosonmbra"  id="aviso'+value.fav_id+'" ><div class="cont" ><div class="ui-btn-icon-left ui-icon-delete big-icon3" onclick="gotoDeleteFav('+value.prv_id+' );" ></div></div><div class="text"><div class="title">'+value.prv_alias+'</div></div>'+llamar2+'</div>');
+						if( value.compartir2 ){
+							compartir2 =  value.compartir2HTML ;
+						}
+						$('#content_misfavoritos').append('<div class="aviso favoritos reg ui-btn ui-corner-all c_gris nosonmbra"  id="aviso'+value.fav_id+'" ><div class="cont" ><div class="ui-btn-icon-left ui-icon-delete big-icon3" onclick="gotoDeleteFav('+value.prv_id+' );" ></div></div><div class="text"><div class="title">'+value.prv_alias+'</div>'+compartir2+'</div>'+llamar2+'</div>');
 					};
 				};
 			});
@@ -799,7 +829,7 @@ var verificar_session = function(){
 		jQuery('#btnpopupPadded4').hide();
 		jQuery('#btnpopupPadded4cerrar').show();
 
-		jQuery('#ordenarfav').hide();
+		jQuery('#ordenarfav').show();
 
 		jQuery('#nuevo1,#nuevo2,#nuevo3,#nuevo4').css('opacity', '1');
 		return true;
