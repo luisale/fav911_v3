@@ -4,7 +4,7 @@ function onDeviceReady() {
 	verificar_session();
 	var push = PushNotification.init({ 
 	 		"android": {"senderID": "546757857806","vibrate":"true"},
- 			"ios": {"alert": "true", "badge": "true", "sound": "true"}, 
+ 			"ios": {"alert": "true", "badge": "false", "sound": "true"}, 
  			"windows": {} } 
 			);
     push.on('registration', function(data) {
@@ -275,6 +275,7 @@ function login () {
 
 jQuery.fn.resetear = function () {
 	$(this).each(function(){ this.reset(); });
+    getselcategoria();
 	$('#imgavs1').attr("src","");
 	$('#imgavs2').attr("src","");
 	$('#imgavs3').attr("src","");
@@ -294,7 +295,7 @@ function validarnuevoaviso(){
 
 function getselcategoria(){
 	var session = window.localStorage.getItem("session");
-	$('#avs_categoria').html('<option data-placeholder="true">Seleccione Una Categoria</option>');
+	$('#avs_categoria').html('<option value="-1" selected="selected">Seleccione Una Categoria</option>');
 	$.ajax({
 		type: "POST",
 		url: "http://www.fav911.com/ws/fav911/getcategorias/", 
@@ -306,14 +307,14 @@ function getselcategoria(){
 			$.each(data,function(index,cat){
 				$('#avs_categoria').append('<option value="'+cat.sel_id+'">'+cat.sel_nombre+'</option>');
 			});
-		 $('#avs_categoria').selectmenu('refresh');
+		 $('#avs_categoria').selectmenu('refresh',true);
 		}
 	});  
 }
 
 function avisosnoti(){
 	var session = window.localStorage.getItem("session");
-	$('#avisosnoti').html('<option data-placeholder="true" value="" >Seleccione Un Aviso</option>');
+	$('#avisosnoti').html('<option value="-1" selected="selected" >Seleccione Un Aviso</option>');
 	$.ajax({
 		type: "POST",
 		url: "http://www.fav911.com/ws/fav911/avisosnoti/", 
@@ -327,7 +328,7 @@ function avisosnoti(){
 				if( val.avs_alias != undefined ){
 					$('#avisosnoti').append('<option value="'+val.avs_id+'">'+val.avs_alias+'</option>');
 				}else{
-					$('#avisosnoti').append('<option value="">No tiene avisos creados</option>');
+					$('#avisosnoti').append('<option value="-1" selected="selected" >No tiene avisos creados</option>');
 				}
 			});
 		 	$('#avisosnoti').selectmenu('refresh');
@@ -399,7 +400,6 @@ function editavs(id_avs){
 
 	var session = window.localStorage.getItem("session");
 	$('#form-aviso').resetear();
-	getselcategoria();
 
 	$.ajax({
 	  type: "POST",
@@ -409,19 +409,19 @@ function editavs(id_avs){
 	  cache:false,
 	  success: 
 		function(data){
-			if( data.avs_id!= undefined) $('#form-aviso #editavs_id').val(data.avs_id);
-			if( data.avs_alias!= undefined) $('#form-aviso #avs_alias').val(data.avs_alias);
-			if( data.avs_descripcion!= undefined) $('#form-aviso #avs_descripcion').val(data.avs_descripcion);
-			if( data.avs_detalle!= undefined) $('#form-aviso #avs_detalle').val(data.avs_detalle);
-			if( data.avs_cobertura!= undefined) $('#form-aviso #avs_cobertura').val(data.avs_cobertura);
+			if( data.avs_id != undefined) $('#form-aviso #editavs_id').val(data.avs_id);
+			if( data.avs_alias != undefined) $('#form-aviso #avs_alias').val(data.avs_alias);
+			if( data.avs_descripcion != undefined) $('#form-aviso #avs_descripcion').val(data.avs_descripcion);
+			if( data.avs_detalle != undefined) $('#form-aviso #avs_detalle').val(data.avs_detalle);
+			if( data.avs_cobertura != undefined) $('#form-aviso #avs_cobertura').val(data.avs_cobertura);
 
-			if( data.avs_categoria!= undefined) {
+			if( data.avs_categoria != undefined) {
 				$('#avs_categoria option[value="'+data.avs_categoria+'"]').prop('selected', true);
-				$('#avs_categoria').selectmenu('refresh');
+				
 			}
-			if( data.avs_color!= undefined) {
+			if( data.avs_color != undefined) {
 				$('#avs_color option[value="'+data.avs_color+'"]').prop('selected', true);
-				$('#avs_color').selectmenu('refresh');
+				
 			}
 			if( data.con_nombre != undefined ) $('#form-aviso #con_nombre').val(data.con_nombre);
 			if( data.con_apaterno != undefined ) $('#form-aviso #con_apaterno').val(data.con_apaterno);
@@ -454,9 +454,9 @@ function editavs(id_avs){
 					$('#form-aviso #tag'+tagn).val(tag.tgs_alias);
 				});
 			}
-			if( data.dir_lat!= undefined) $('#form-aviso #avs_lat').val(data.dir_lat);
-			if( data.dir_long!= undefined) $('#form-aviso #avs_lng').val(data.dir_long);
-			if( data.avs_direccion!= undefined) $('#form-aviso #avs_direccion').val(data.avs_direccion);
+			if( data.dir_lat != undefined) $('#form-aviso #avs_lat').val(data.dir_lat);
+			if( data.dir_long != undefined) $('#form-aviso #avs_lng').val(data.dir_long);
+			if( data.avs_direccion != undefined) $('#form-aviso #avs_direccion').val(data.avs_direccion);
 
 			window.localStorage.setItem("lat", data.dir_lat);
 			window.localStorage.setItem("lng", data.dir_long);
@@ -466,6 +466,8 @@ function editavs(id_avs){
 			var lati = window.localStorage.getItem("lat");
 			var longi = window.localStorage.getItem("lng");
 			mapdireccion(lati,longi);
+           $('#avs_categoria').selectmenu('refresh',true);
+           $('#avs_color').selectmenu('refresh',true);
 		}
 	});
 }

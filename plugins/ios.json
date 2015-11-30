@@ -6,6 +6,31 @@
     "config_munge": {
         "files": {}
     },
+<<<<<<< Updated upstream
     "installed_plugins": {},
+=======
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "151674005184259",
+            "APP_NAME": "cl.doapp.fav911",
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "cl.doapp.fav911"
+        }
+    },
+>>>>>>> Stashed changes
     "dependent_plugins": {}
 }

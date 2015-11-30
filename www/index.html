@@ -25,6 +25,11 @@
 		<script type="text/javascript" src="js/facebook.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/pnotify.custom.min.js"></script>
+        <script type="text/javascript">
+        $(document).bind("mobileinit", function(){
+            $.mobile.hashListeningEnabled = false;
+        });
+        </script>
 	</head>
 	<body >
 		<div id="fb-root"></div>
@@ -50,7 +55,7 @@
 										<span>Cerrar Sesión</span>
 									</a>
 
-									<div data-role="popup" id="popupPadded" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
+									<div data-role="popup" data-history="false" id="popupPadded" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
 										<form method="post" id="formregistro">
 											<input type="text" name="alias" id="alias" required placeholder="Alias" >
 											<input type="text" name="movil" id="movil" required placeholder="Movil (+56 9 xxx xxxx)" >
@@ -63,7 +68,7 @@
 										</form>
 									</div>
 
-									<div data-role="popup" id="authpropio" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
+									<div data-role="popup" data-history="false" id="authpropio" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
 										<form method="post" id="formauthpropio">
 											<input type="text" name="email" id="email" required placeholder="E-mail" >
 											<input type="password" name="pass" id="pass" required placeholder="Contraseña" >
@@ -74,7 +79,7 @@
 										</form>
 									</div>
 
-									<div data-role="popup" id="iniciarsession" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
+									<div data-role="popup" id="iniciarsession" data-history="false" data-overlay-theme="b" data-theme="a" class="registro ui-content" >
 										<form method="post" id="forminiciarsession">
 											<input type="text" name="emailini" id="emailini" required placeholder="E-mail" >
 											<input type="password" name="passini" id="passini" required placeholder="Contraseña" >
@@ -218,7 +223,7 @@
 								<div class="cont">
 									<a class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars c_morado big-icon2 borde" href="#inicio" ><span>Inicio</span></a>
 
-									<a href="#nuevoaviso" onclick="$('#form-aviso').resetear(); getselcategoria();" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" id="nuevo1" >
+									<a href="#nuevoaviso" onclick="$('#form-aviso').resetear(); " class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" id="nuevo1" >
 										<span>Nuevo</span>
 									</a>
 								</div>
@@ -251,33 +256,28 @@
 					</div>
 					<div data-role="content" role="main" class="content ui-content">
 						<div class="margen">
+                            
 							<form action="#" id="form-aviso" class="form-aviso" method="post" >
 
 								<input type="text" id="avs_alias" name="avs_alias" placeholder="Alias del Aviso" />
 								<input type="text" id="avs_descripcion" name="avs_descripcion" placeholder="Descripción del Aviso" />
 								<input type="text" id="avs_detalle" name="avs_detalle" placeholder="Detalle del Aviso" />
 								<input type="text" id="avs_cobertura" name="avs_cobertura" placeholder="Cobertura en Radio de kilómetros" />
+                                
+                                <select name="avs_color" id="avs_color" >
+                                    <option >Seleccione Un Color</option>
+                                    <option value="c_gris">Gris</option>
+                                    <option value="c_naranjo">Naranjo</option>
+                                    <option value="c_celeste">Celeste</option>
+                                    <option value="c_amarillo">Amarillo</option>
+                                    <option value="c_rojo">Rojo</option>
+                                </select>
 
-								<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
-											<div class="ui-select">
-											<select name="avs_color" id="avs_color" data-native-menu="false" tabindex="-1">
-											<option data-placeholder="true">Seleccione Una Color</option>
-											<option value="c_gris">Gris</option>
-											<option value="c_naranjo">Naranjo</option>
-											<option value="c_celeste">Celeste</option>
-											<option value="c_amarillo">Amarillo</option>
-											<option value="c_rojo">Rojo</option>
-										</select>
-									</div>
-								</div>
 
-								<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
-									<div class="ui-select">
-										<select name="avs_categoria" id="avs_categoria" data-native-menu="false" tabindex="-1">
-											<option data-placeholder="true">Seleccione Una Categoria</option>
+										<select name="avs_categoria" id="avs_categoria" >
+											<option>Seleccione Una Categoria</option>
 										</select>
-									</div>
-								</div>
+								
 
 								<label>Horario de Atención</label>
 								<input type="text" id="hlunes" name="hlunes" placeholder="Lunes" />
@@ -338,11 +338,11 @@
 								</div>
 								<input type="text" name="avs_direccion" id="avs_direccion" placeholder="Presione Obtener Direccion" />
 
-
 								<div class="margen2 left"> 
 									<a href="javascript:void(0);" onclick="guardaraviso();" class="ui-btn ui-corner-all c_amarillo borde"><span>Guardar</span></a>
 								</div>
 							</form>
+                            
 						</div>
 					</div>
 				</div>
@@ -361,7 +361,7 @@
 										<span>Ordenar</span>
 									</a>
 									<a href="#popupPadded2" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" id="nuevo3" ><span>Nuevo</span></a>
-									<div data-role="popup" id="popupPadded2" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
+									<div data-role="popup" id="popupPadded2" data-history="false" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
 										<form method="post" id="form-proveedor" >
 											<input type="text" name="prv_alias" required id="prv_alias" placeholder="Alias del proveedor" >
 											<input type="text" name="prv_movil" required id="prv_movil" placeholder="Movil (+56 9 xxx xxxx)" >
@@ -396,19 +396,16 @@
 									<a href="#popupPadded4" onclick="avisosnoti();" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-check c_amarillo big-icon2 borde" data-transition="pop" id="nuevo4" >
 										<span>Nueva</span>
 									</a>
-									<div data-role="popup" id="popupPadded4" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
+									<div data-role="popup" id="popupPadded4" data-history="false" data-overlay-theme="b" data-theme="a" class="registro ui-content" style="">
 										<form method="post" class="form" action="#notificaciones
 										" name="form-notificacion" id="form-notificacion">
 											<input type="text" name="aliasnoti" id="aliasnoti" value="" placeholder="Alias de la notificación" >
 											<textarea rows="30" name="detallenoti" id="detallenoti" value="" placeholder="Detalle" ></textarea>
-											
-											<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
-                                    			<div class="ui-select">
-                                    			    <select name="avisosnoti" id="avisosnoti" data-native-menu="false" tabindex="-1">
-                                    			        <option data-placeholder="true" selected="selected" value="-1">Seleccione Un Aviso</option>
-                                    			    </select>
-                                    			</div>
-                           				 	</div>
+                                            
+                                                <select name="avisosnoti" id="avisosnoti" >
+                                                    <option selected="selected" value="-1">Seleccione Un Aviso</option>
+                                                </select>
+                                                
 											<div class="margen2 btn">
 												<button type="buttom" onclick="guardarnoti();" class="ui-btn ui-corner-all c_amarillo">Guardar</button>
 											</div>
